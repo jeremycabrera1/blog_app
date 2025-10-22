@@ -7,6 +7,9 @@ User = get_user_model()
 
 class Category(models.Model):
     category = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name_plural = "categories"
     
     def __str__(self):
         return f"{self.category}"
@@ -18,6 +21,7 @@ class Post(models.Model):
     added_on = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now_add=True)
     categories = models.ManyToManyField('Category', related_name='posts')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
 
 
     def __str__(self):
@@ -25,7 +29,8 @@ class Post(models.Model):
 
 
 class comment(models.Model):
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, related_name='comments')
     name = models.CharField(max_length=50)
     content = models.TextField()
     added_on = models.DateTimeField(auto_now_add=True)
-    post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    
