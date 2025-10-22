@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import read_post
+from .views import PostListView, PostCreateView
 
 urlpatterns = [
-    #path('', PostView.as_view(), name='posts'),
-    path('', read_post, name='posts'),
+    path('', PostListView.as_view(), name='posts'),
+    path('create-post', PostCreateView.as_view(), name='create_post'),
 ]

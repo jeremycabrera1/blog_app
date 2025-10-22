@@ -1,0 +1,29 @@
+{% extends "blog/_base.html" %}
+{% block title %}Create Post{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+    <p>Please fix the errors below:</p>
+    <ul>
+        {% for field in form %}
+            {% for error in field.errors %}
+                <li>{{ field.label }}: {{ error }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<form method="POST" enctype="multipart/form-data">
+    <!-- Security token -->
+    {% csrf_token %}
+    <!-- Using the formset -->
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+
+</form>
+{% endblock content %}
+
+
+
+

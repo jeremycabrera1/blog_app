@@ -6,13 +6,13 @@ User = get_user_model()
 
 
 class Category(models.Model):
-    category = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
     class Meta:
         verbose_name_plural = "categories"
     
     def __str__(self):
-        return f"{self.category}"
+        return f"{self.name}"
     
 
 class Post(models.Model):
