@@ -14,6 +14,7 @@ class PostCreateView(CreateView):
     model = Post
     fields = ['title', 'content', 'categories',]
     success_url = reverse_lazy('posts')
+    
     def form_valid(self, form):
-            form.instance.owner = self.request.user # Assuming 'owner' is the ForeignKey field
+            form.instance.owner = self.request.user
             return super().form_valid(form)
