@@ -3,15 +3,23 @@
 
 {% block content %}
 <h2>Posts</h2>
-    <a href="{% url 'create_post' %}">Create a post</a>
+<hr>
+    <a href="{% url 'create_post' %}"><button type="button" class="btn btn-dark">Create a post</button>
+    </a>
+<hr>
     <ul>
         {% for object in object_list %}
             <li>
-                <h3>{{ object.title }}</h3>
-                <p>{{ object.content }}</p>
-                <p>{{ object.added_on }}</p>
-               <p>{{ object.categories.get }}</p>
-               <hr>
+                <div class="card" style="width: 64rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ object.title }}</h5>
+                        <p class="card-text">{{ object.content }}</p>
+                        <p class="card-text">{{ object.added_on }}</p>
+                        <p class="card-text">{{ object.categories.get }}</p>
+                        <a href="{% url 'update_post' object.id %}" class="card-link">Update</a>
+                        <a href="{% url 'delete_post' object.id %}" class="card-link">Delete</a>
+                    </div>
+                </div>
             </li>
         {% endfor %}
     </ul>
